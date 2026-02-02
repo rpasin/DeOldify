@@ -16,6 +16,12 @@ from IPython.display import Image as ipythonimage
 import cv2
 import logging
 
+import torch
+import functools
+import torch.nn as nn
+from fastai.basic_train import Recorder
+from contextlib import contextmanager
+
 # adapted from https://www.pyimagesearch.com/2016/04/25/watermarking-images-with-opencv-and-python/
 def get_watermarked(pil_image: Image) -> Image:
     try:
@@ -434,15 +440,19 @@ def get_stable_video_colorizer(
     vis = ModelImageVisualizer(filtr, results_dir=results_dir)
     return VideoColorizer(vis)
 
-
 def get_image_colorizer(
     root_folder: Path = Path('./'), render_factor: int = 35, artistic: bool = True
 ) -> ModelImageVisualizer:
     if artistic:
-        return get_artistic_image_colorizer(root_folder=root_folder, render_factor=render_factor)
+        return get_artistic_image_colorizer(
+            root_folder=root_folder,
+            render_factor=render_factor
+        )
     else:
-        return get_stable_image_colorizer(root_folder=root_folder, render_factor=render_factor)
-
+        return get_stable_image_colorizer(
+            root_folder=root_folder,
+            render_factor=render_factor
+        )
 
 def get_stable_image_colorizer(
     root_folder: Path = Path('./'),

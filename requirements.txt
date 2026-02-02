@@ -1,13 +1,30 @@
-wandb
+# ================================
+# DeOldify – macOS compatible
+# Python 3.10
+# ================================
+
+# --- Core ML stack ---
+torch>=1.13,<2.2
+torchvision>=0.14,<0.17
+torchaudio>=0.13,<2.2
+
+# --- fastai (instalado SIN deps) ---
 fastai==1.0.60
-tensorboardX>=1.6
-ffmpeg
-ffmpeg-python
-yt-dlp
-jupyterlab
-opencv-python>=4.2.0.32
-Pillow==9.3.0
---extra-index-url https://download.pytorch.org/whl/cu113
-torch==1.11.0
-torchvision==0.12.0
-ipywidgets
+
+# --- Numeric / scientific ---
+numpy<2.0
+scipy>=1.8,<2.0
+pandas>=1.5,<3.0
+
+# --- Imaging ---
+pillow>=9.0,<11.0
+opencv-python>=4.6,<5.0
+matplotlib>=3.6,<4.0
+
+# --- Utilities ---
+pyyaml>=6.0
+requests>=2.28
+tqdm>=4.64
+
+# --- NLP (fastai dependency) ---
+spacy>=3.4,<3.9

@@ -1,0 +1,133 @@
+# ============================================================
+# requirements.lock.txt
+# ------------------------------------------------------------
+# DeOldify – entorno estable y reproducible
+#
+# Plataforma : macOS (Apple Silicon / ARM64)
+# Python     : 3.10.x
+# Proyecto   : DeOldify (fastai 1.x – modelo legacy)
+#
+# Este archivo congela EXACTAMENTE las versiones que funcionan.
+# NO actualizar paquetes desde aquí.
+# Para cambios:
+#   - modificar requirements.txt
+#   - recrear venv
+#   - regenerar este lock con: pip freeze
+# ============================================================
+
+
+# ------------------------------------------------------------
+# Núcleo científico / numérico (CRÍTICO)
+# ------------------------------------------------------------
+# NumPy 1.23.5 es OBLIGATORIO:
+# - fastai 1.x
+# - PyTorch 1.13
+# - OpenCV 4.5.x
+# NO es compatible con NumPy 2.x
+numpy==1.23.5
+
+# SciPy y Pandas dependen directamente de NumPy
+scipy==1.15.3
+pandas==2.3.3
+
+
+# ------------------------------------------------------------
+# PyTorch stack (modelo y backend)
+# ------------------------------------------------------------
+# Versiones históricamente compatibles con DeOldify
+# Evitan errores de:
+# - weights_only
+# - serialización
+# - incompatibilidad fastai / torch
+torch==1.13.1
+torchvision==0.14.1
+torchaudio==0.13.1
+
+
+# ------------------------------------------------------------
+# fastai / progreso / utilidades internas
+# ------------------------------------------------------------
+# fastai 1.x usa fastcore y fastprogress internamente
+fastcore==1.12.11
+fastprogress==1.1.3
+
+
+# ------------------------------------------------------------
+# Visualización e imágenes
+# ------------------------------------------------------------
+# OpenCV 4.5.5.x es la última versión compatible con NumPy < 2
+# Versiones más nuevas FUERZAN NumPy >= 2 y rompen DeOldify
+opencv-python==4.5.5.64
+
+# Pillow y Matplotlib se usan para carga, guardado y comparación
+pillow==12.1.0
+matplotlib==3.10.8
+matplotlib-inline==0.2.1
+
+# Dependencias internas de matplotlib
+contourpy==1.3.2
+cycler==0.12.1
+fonttools==4.61.1
+kiwisolver==1.4.9
+
+
+# ------------------------------------------------------------
+# Video / multimedia (opcional pero soportado)
+# ------------------------------------------------------------
+# Wrapper Python para ffmpeg (NO es el binario del sistema)
+ffmpeg-python==0.2.0
+
+# yt-dlp es requerido porque DeOldify importa soporte de video
+# aunque solo se usen imágenes
+yt-dlp==2026.1.31
+
+
+# ------------------------------------------------------------
+# Configuración / parsing
+# ------------------------------------------------------------
+# PyYAML es requerido por fastai
+PyYAML==6.0.3
+
+# dotenv es opcional, pero útil para variables de entorno
+python-dotenv==1.2.1
+
+
+# ------------------------------------------------------------
+# Red / HTTP / CLI base
+# ------------------------------------------------------------
+# Infraestructura estándar, no afecta el core del modelo
+requests==2.32.5
+urllib3==2.6.3
+certifi==2026.1.4
+charset-normalizer==3.4.4
+idna==3.11
+click==8.3.1
+
+
+# ------------------------------------------------------------
+# IPython / depuración (NO crítico para producción)
+# ------------------------------------------------------------
+# Útil para sesiones interactivas y debugging
+ipython==8.38.0
+jedi==0.19.2
+prompt_toolkit==3.0.52
+Pygments==2.19.2
+
+
+# ------------------------------------------------------------
+# Tipado / compatibilidad Python
+# ------------------------------------------------------------
+typing_extensions==4.15.0
+six==1.17.0
+
+
+# ------------------------------------------------------------
+# Async / servidor (NO usados por DeOldify CLI)
+# ------------------------------------------------------------
+# Presentes por dependencias indirectas.
+# No afectan el funcionamiento del colorizador.
+uvicorn==0.40.0
+starlette==0.52.1
+uvloop==0.22.1
+watchfiles==1.1.1
+websockets==16.0
